@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView, ActivityIndicator, Image, TouchableOpacity, Linking } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faMugSaucer } from '@fortawesome/free-solid-svg-icons/faMugSaucer';
+import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare';
+import { faInstagramSquare } from '@fortawesome/free-brands-svg-icons/faInstagramSquare';
+import { faTiktok } from '@fortawesome/free-brands-svg-icons/faTiktok';
+import Footer from './Footer';
+
 
 export default class Zoom extends Component {
   state = {
@@ -15,7 +19,7 @@ export default class Zoom extends Component {
 
   fetchLessons = async () => {
     try {
-      const response = await fetch('http://192.168.1.16:3000/lessons');
+      const response = await fetch('http://192.168.1.5:3000/lessons'); // make sure to change this if using a different network
       if (!response.ok) {
         throw new Error(`HTTP status ${response.status}`);
       }
@@ -54,31 +58,36 @@ export default class Zoom extends Component {
               <View style={styles.socialPlatforms}>
                 {/* facebook icon with the link*/}
                 <TouchableOpacity onPress={() => Linking.openURL(lesson.social_platforms.facebook)}>
-                <FontAwesomeIcon icon={faMugSaucer} size={30} color="#3b5998" />
+                <FontAwesomeIcon icon={faFacebookSquare} size={30} color="#3b5998" />
               </TouchableOpacity>
 
               <TouchableOpacity onPress={() => Linking.openURL(lesson.social_platforms.instagram)}>
-              <FontAwesomeIcon icon={faMugSaucer} size={30} color="#3b5998" />
+              <FontAwesomeIcon icon={faInstagramSquare} size={30} color="#3b5998" />
               </TouchableOpacity>
 
               <TouchableOpacity onPress={() => Linking.openURL(lesson.social_platforms.tiktok)}>
-                <FontAwesomeIcon icon={faMugSaucer} size={30} color="#3b5998" />
+                <FontAwesomeIcon icon={faTiktok} size={30} color="#3b5998" />
               </TouchableOpacity>
               </View>
             </View>
           ))}
+          <Footer> </Footer>
         </ScrollView>
       </View>
+
     );
+    
   }
+  
 }
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    padding: 20,
+    //padding: 20,
   },
   header: {
     fontSize: 20,
@@ -121,6 +130,9 @@ const styles = StyleSheet.create({
   },
   socialPlatforms: {
     marginTop: 10,
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    flexDirection: 'row',
   },
   socialPlatform: {
     fontSize: 14,

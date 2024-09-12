@@ -1,6 +1,6 @@
 const { MongoClient } = require('mongodb');
 
-const uri = "mongodb+srv://abdullahabdosh:Abdullah1$@hararianorg.0ywtsee.mongodb.net/?retryWrites=true&w=majority";
+const uri = "mongodb+srv://abdullahabdosh:Abdullah1$@hararianorg.0ywtsee.mongodb.net/?retryWrites=true&w=majority&appName=hararianorg";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 async function fetchLessons() {
@@ -17,7 +17,8 @@ async function fetchLessons() {
                 date_time: 1,
                 zoom_link: 1,
                 meeting_id: 1,
-                social_platforms: 1
+                social_platforms: 1,
+                image: 1
             }
         }).toArray();
         return lessonsData;

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native';
+import { StyleSheet, Text, TextInput, Button, Alert, SafeAreaView, ScrollView } from 'react-native';
+import Footer from './Footer';
 
 export default function ContactUs() {
   const [name, setName] = useState('');
@@ -10,44 +11,52 @@ export default function ContactUs() {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>Welcome to Hararianorg</Text>
-      <Text style={styles.subheader}>About Us</Text>
-      <Text>This is a sample website for Hararianorg.</Text>
-      <Text style={styles.subheader}>Contact Us</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Name"
-        value={name}
-        onChangeText={setName}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
-      />
-      <Button title="Submit" onPress={handleSubmit} />
-    </View>
+    <SafeAreaView style={styles.safeArea}>
+      <ScrollView style={styles.scrollContainer} contentContainerStyle={styles.contentContainer}>
+        <Text style={styles.header}>Welcome to Hararianorg</Text>
+        <Text style={styles.subheader}>Contact Us</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Name"
+          value={name}
+          onChangeText={setName}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Email"
+          value={email}
+          onChangeText={setEmail}
+        />
+        <Button title="Submit" onPress={handleSubmit} />
+      </ScrollView>
+      <Footer />
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  safeArea: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
+  },
+  scrollContainer: {
+    flex: 1,
+  },
+  contentContainer: {
+    flexGrow: 1,
     justifyContent: 'center',
     padding: 20,
   },
   header: {
     fontSize: 24,
     marginBottom: 20,
+    textAlign: 'center',
   },
   subheader: {
     fontSize: 18,
     marginTop: 20,
     marginBottom: 10,
+    textAlign: 'center',
   },
   input: {
     height: 40,
